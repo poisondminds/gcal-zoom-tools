@@ -12,17 +12,17 @@ pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-
 pip install google-auth-oauthlib
 pip install python-dateutil
 ```
-* Run either tool at least once to get logged in with Google
+* Run tool once to get logged in with Google
 
 ## Usage
 Your meeting started, but you're too lazy to open your calendar or the Zoom app to join the correct one:
 ```bash
-python zoom_current_join.py
+python zoomtool.py join
 ```
 
 You're listening in on a meeting via a Zoom room or someone elses computer, and your boss asks you to share your screen. You don't want to join, show your face, and create a bunch of audio feedback in the room. YOU JUST WANT TO SHARE YOUR SCREEN.
 ```bash
-python zoom_current_share.py
+python zoomtool.py share
 ```
 
 This was fun.

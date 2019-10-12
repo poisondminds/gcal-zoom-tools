@@ -32,17 +32,17 @@ def get():
 
     return build('calendar', 'v3', credentials=creds)
 
-def current_events():
-    current = []
-
+def upcoming_events(limit):
     now_utc_formatted = datetime.datetime.utcnow().isoformat() + 'Z'
     events_result = get().events().list(calendarId='primary', timeMin=now_utc_formatted,
-                                        maxResults=10, singleEvents=True,
+                                        maxResults=limit, singleEvents=True,
                                         orderBy='startTime').execute()
-    events = events_result.get('items', [])
+    return events_result.get('items', [])
 
-    if not events:
-        return current
+def current_events(limit):
+    current = []
+
+    events = upcoming_events(limit)
 
     for event in events:
         start = parser.parse(event['start'].get('dateTime'))
