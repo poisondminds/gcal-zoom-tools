@@ -45,8 +45,12 @@ def current_events(limit):
     events = upcoming_events(limit)
 
     for event in events:
-        start = parser.parse(event['start'].get('dateTime'))
-        end = parser.parse(event['end'].get('dateTime'))
+        start_time = event['start'].get('dateTime')
+        end_time = event['end'].get('dateTime')
+        if start_time == None or end_time == None:
+            continue
+        start = parser.parse(start_time)
+        end = parser.parse(end_time)
         now_local = datetime.datetime.now(start.tzinfo)
 
         if start <= now_local <= end:
